@@ -1,20 +1,68 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+    <h3 class="padding-title">บันทึกรายรับรายจ่าย</h3>
+    <div class="row">
+        <div class="col">
+    
+            <div class="row">
+                <div class="col-3">วันที่ : </div>
+                <div class="col-9 p-1">
+                    <input type="date" class="form-control" name="crrDate" [(ngModel)]="crrDate">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-3">จำนวนเงิน : </div>
+                <div class="col-9 p-1">
+                    <div class="input-group">
+                    <input type="number" class="form-control" min="0" [(ngModel)]="money">
+                    <div class="input-group-append">
+                        <span class="input-group-text">฿</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-3">หมายเหตุ : </div>
+                <div class="col-9 p-1">
+                    <input type="text" class="form-control" id="note" [(ngModel)]="note">
+                </div>
+            </div>
 
+            <div class="row" *ngIf="optionType == 2">
+                <div class="col-3">ประเภทการจ่าย : </div>
+                <div class="col-9 p-1">
+                    <select class="form-control" id="payType" [(ngModel)]="payType">
+                        <option value="apple">ค่าอาหาร</option>
+                        <option value="suitcase">ค่าเดินทาง</option>
+                        <option value="money-bill-alt">หนี้สิน</option>
+                        <option value="wallet">อื่นๆ</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-3">ตัวเลือก : </div>
+                <div class="col-9 p-1">
+                    <input type="radio" id="receipts" name="optionType" value="1" [(ngModel)]="optionType"><label for="receipts">&nbsp;รายรับ</label>&nbsp;
+                    <input type="radio" id="expenses" name="optionType" value="2" [(ngModel)]="optionType"><label for="expenses">&nbsp;รายจ่าย</label>
+                </div>
+            </div>
+    
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)="onSubmit()">บันทึก</button>
+    
+        </div>
+        <div class="col">
+            <select class="form-control" id="search" [(ngModel)]="search" (change)="onChange(search)">.
+                <option value="all">ทั้งหมด</option>
+                <option value="smile">รายรับ</option>
+                <option value="apple">ค่าอาหาร</option>
+                <option value="suitcase">ค่าเดินทาง</option>
+                <option value="money-bill-alt">หนี้สิน</option>
+                <option value="wallet">อื่นๆ</option>
+            </select>
+
+            <app-wallet-card *ngFor="let item of arrData" [item]="item"></app-wallet-card>
+        </div>
+    </div>
+</div>

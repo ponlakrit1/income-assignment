@@ -1,0 +1,13 @@
+<div class="p-1">
+  <div class="card" style="width: 100%;">
+    <div class="card-header" [ngClass]="arrDataCard.optionType == 1? 'green-card' : 'red-card'">
+      <i class="fab" [ngClass]="'fa-'+arrDataCard.payType">&nbsp;</i>
+      {{arrDataCard.saveDate | date:'dd MMM yyyy'}}
+    </div>
+    <div class="card-body">
+      <div *ngIf="arrDataCard.note != null; else noMoney">หมายเหตุ : {{arrDataCard.note}}</div>
+      <ng-template #noMoney><div>หมายเหตุ : ไม่มีเหตุผลไม่ต้องถาม</div></ng-template>
+      <div [ngStyle]="{'font-size.em': 0.75}">จำนวน : {{arrDataCard.amount}} บาท</div>
+    </div>
+  </div>
+</div>

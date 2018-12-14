@@ -1,0 +1,11 @@
+.green-card {
+    color: white;
+    font-weight: bold;
+    background-color: green;
+}
+
+.red-card {
+    color: white;
+    font-weight: bold;
+    background-color: red;
+}
